@@ -20,14 +20,21 @@ def sign_up():
        password1 = request.form.get('password1') 
        password2 = request.form.get('password2')
 
+       counter = 0
+       for i in range(len(password1)):
+           if password1[i].isdigit():
+               counter+=1
+
        if len(email) < 4:
-           flash('Email must be greater than 4 characters.', category='error')
+           flash('Email must be greater than 3 characters.', category='error')
        elif len(firstName) < 2:
-           flash('First name must be greater than 1 characters.', category='error')
+           flash('First name must be greater than 1 character.', category='error')
        elif password1 != password2:
            flash('Passwords don\'t match.', category='error')
        elif len(password1) < 7:
            flash('Password must be at least 7 characters.', category='error')
+       elif counter == 0:
+           flash('Password must contain a number.', category='error')
        else:
            flash('Account created!', category='success')
            
