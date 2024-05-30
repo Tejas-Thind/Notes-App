@@ -17,7 +17,25 @@
           crossorigin="anonymous"
         />
 
-        <title>{% block title %}Home{% endblock %}</title> <!--This is able to be overwritten by child and changed-->
+        <title>{% block title %}Home{% endblock %}</title> <!--This is able to be overwritten by child and changed-->\
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+          .form-control-glow {
+              border: 1px solid #ced4da;
+              border-radius: 0.25rem;
+              padding: 0.375rem 0.75rem;
+              background-color: #fff;
+              background-clip: padding-box;
+              box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+              transition: box-shadow 0.3s ease-in-out;
+          }
+          .form-control-glow:focus {
+              border-color: #80bdff;
+              outline: 0;
+              box-shadow: 0 0 20px rgba(0, 123, 255, 0.75);
+          }
+      </style>
+
     </head>
 
     <body>
@@ -80,6 +98,9 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"
         ></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     </body>
 
 </html>
