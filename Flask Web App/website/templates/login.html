@@ -1,9 +1,10 @@
 {% extends "base.html" %} {% block title %}Login{% endblock %}
 
 {% block content %}
-
+<!-- Login form -->
 <form method="POST">
     <h3 align="center">Login</h3>
+    <!-- Email input field -->
     <div class="form-group">
         <label for="email">Email Address</label>
         <input 
@@ -15,6 +16,7 @@
         required
         />
     </div>
+    <!-- Password input field -->
     <div class="form-group">
         <label for="password">Password</label>
         <input 
@@ -27,6 +29,7 @@
         />
     </div>
     <br>
+    <!-- Submit button -->
     <div style="text-align: center;">
         <button type="submit" class="btn btn-primary">Login</button>
     </div>

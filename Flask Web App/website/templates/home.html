@@ -2,20 +2,27 @@
 
 {% block content %}
 <br>
+<!-- Heading to add a note -->
 <h1 align="center" class="display-6" style="font-family:Comic Sans MS">Add a Note!</h1>
+<!-- List to display notes -->
 <ul class="list-group list-group-flush" id="notes">
     {% for note in user.notes %}
+    <!-- Individual note item -->
     <li class="list-group-item">{{ note.data }}
+        <!-- Button to delete note -->
         <button type="button" class="close" onclick="deleteNote({{ note.id }})">
             <span align="center" aria-hidden="true">&times;</span>
         </button>
     </li>
     {% endfor %}
 </ul>
+<!-- Form to add a new note -->
 <form method="POST">
     <br>
+    <!-- Textarea for entering note content -->
     <textarea name="note" id="note" class="form-control form-control-glow"></textarea>
     <br>
+    <!-- Submit button for adding note -->
     <div align="center">
         <button type="submit" class="btn btn-primary">Add Note</button>
     </div>

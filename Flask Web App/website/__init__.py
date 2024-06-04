@@ -5,7 +5,7 @@ from flask_login import LoginManager
 
 # Initialize the database instance
 db = SQLAlchemy()
-DB_NAME = "database.db"  # Define the database name
+DB_NAME = "database.db"
 
 def create_app():
     app = Flask(__name__)
@@ -41,3 +41,5 @@ def create_database():
     if not path.exists('website/' + DB_NAME):  # Check if the database file does not exist
         db.create_all()  # Create the database and tables
         print('Created Database!')  # Print a confirmation message
+    else:
+        print('Database Already Exists!')

@@ -1,8 +1,10 @@
 {% extends "base.html" %} {% block title %}Sign Up{% endblock %}
 
 {% block content %}
+<!-- Sign-up form -->
 <form method="POST">
     <h3 align="center">Sign Up</h3>
+    <!-- Email input field -->
     <div class="form-group">
         <label for="email">Email Address</label>
         <input 
@@ -14,6 +16,7 @@
         required
         />
     </div>
+    <!-- First name input field -->
     <div class="form-group">
         <label for="firstName">First Name</label>
         <input 
@@ -25,6 +28,7 @@
         required
         />
     </div>
+    <!-- Password input field -->
     <div class="form-group">
         <label for="password1">Password</label>
         <input 
@@ -36,6 +40,7 @@
         required
         />
     </div>
+    <!-- Password confirmation input field -->
     <div class="form-group">
         <label for="password2">Confirm Password</label>
         <input 
@@ -48,6 +53,7 @@
         />
     </div>
     <br>
+    <!-- Submit button -->
     <div style="text-align: center;">
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
