@@ -1,7 +1,8 @@
 # Import necessary modules from Flask
+import os
 from flask import Blueprint, render_template, request, flash, jsonify
 from flask_login import login_required, current_user
-from .models import Note  
+from .models import Note, User  
 from . import db 
 import json
 
@@ -25,8 +26,21 @@ def home():
                 db.session.commit()  
                 flash('Note added!', category='success')  
         elif 'export_note' in request.form:  # Check if the other button was clicked
+            # Query all notes from the database by the current user's ID
+            notes = db.session.query(Note).all()
+            # Define the path to the file where the notes will be exported
+            user = User.query.filter_by(id=current_user.id).first()
+            notes_folder = os.path.join(os.getenv('HOME'), 'Notes')
+            path = os.path.join('Notes', f'{user.first_name}' + ' Notes.txt')
+            path_1 = 'notes.txt'
+            flash(path, category='success')
+            with open(path, 'w') as infile:
+                infile.write('Notes:\n')
+                infile.write('\n')
+                for note in notes:
+                    infile.write(note.data + '  Written at: ' + str(note.date) +'\n')
             flash('Note was successfully exported!', category='success')
-            pass
+            
 
     # Render the home.html template, passing the current user as a context variable
     return render_template("home.html", user=current_user)
