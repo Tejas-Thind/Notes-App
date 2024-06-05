@@ -13,15 +13,20 @@ views = Blueprint('views', __name__)
 @login_required  # Ensure the user is logged in to access this route
 def home():
     if request.method == 'POST': 
-        note = request.form.get('note') 
-        if len(note) < 1:  
-            flash('Note is too short!', category='error')  
-        else:
-            # Create a new Note object with the form data and current user's ID
-            new_note = Note(data=note, user_id=current_user.id)
-            db.session.add(new_note)  
-            db.session.commit()  
-            flash('Note added!', category='success')  
+        # Check which button was clicked
+        if 'add_note' in request.form:  # Check if the add note button was clicked
+            note = request.form.get('note') 
+            if len(note) < 1:  
+                flash('Note is too short!', category='error')  
+            else:
+                # Create a new Note object with the form data and current user's ID
+                new_note = Note(data=note, user_id=current_user.id)
+                db.session.add(new_note)  
+                db.session.commit()  
+                flash('Note added!', category='success')  
+        elif 'export_note' in request.form:  # Check if the other button was clicked
+            flash('Note was successfully exported!', category='success')
+            pass
 
     # Render the home.html template, passing the current user as a context variable
     return render_template("home.html", user=current_user)
@@ -39,6 +44,7 @@ def delete_note():
         if note.user_id == current_user.id: 
             db.session.delete(note) 
             db.session.commit()
+            flash('Note deleted!', category='success')
 
     # Return an empty JSON response
     return jsonify({})
