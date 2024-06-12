@@ -1,9 +1,7 @@
-# Import the create_app function from the website module
 from website import create_app
+from flask import session, redirect, url_for
 
-# Call the create_app function to initialize the Flask app
 app = create_app()
 
-# Check if the script is being run directly (as the main module)
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True)  # Run the app in debug mode

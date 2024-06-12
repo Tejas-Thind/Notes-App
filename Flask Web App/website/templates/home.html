@@ -3,7 +3,7 @@
 {% block content %}
 <br>
 <!-- Heading to add a note -->
-<h1 align="center" class="display-6" style="font-family: 'Helvetica Neue', 'Helvetica', 'Times New Roman'">Welcome <span style="color:rgb(99, 216, 255)">{{user.first_name}}</span>, add a note!</h1>
+<h1 align="center" class="text-glow" style="font-family: Sofia Sans; font-size: 45px;">Welcome <span style="color:rgb(99, 216, 255)"><b>{{user.first_name}}</b></span></h1>
 <!-- List to display notes -->
 <ul class="list-group list-group-flush" id="notes">
     {% for note in user.notes %}
@@ -20,15 +20,32 @@
 <form method="POST">
     <br>
     <!-- Textarea for entering note content -->
-    <textarea name="note" id="note" class="form-control form-control-glow"></textarea>
+    <textarea name="note" id="note" class="form-control form-control-glow" placeholder="Start writing some notes!"></textarea>
     <br>
     <!-- Submit button for adding note -->
     <div align="left">
-        <button type="submit" class="btn btn-primary" name="add_note">Add Note</button>
+        <button style="width: 139px; height: 40px;" type="submit" class="btn btn-primary" name="add_note">Add Note</button>
+        <button style="width: 139px; height: 40px; margin-left: 826px;" type="submit" class="btn btn-primary" name="export_note">Export Notes</button>
+    </div>
+    <br>
+    <ul class="list-group list-group-flush" id="searched_notes">
+        {% if searched_notes != None %}
+        {% if searched_notes %}
+        {% for searched_note in searched_notes %}
+        <!-- Individual note item -->
+        <li class="list-group-item">{{ searched_note }}</li>
+        {% endfor %}
+        {% endif %}
+        {% endif %}
+    </ul>
+    <br>
+    <div>
+        <textarea name="search" id="search" class="form-control form-control-glow" placeholder="Search for specific keywords!"></textarea>
     </div>
     <br>
     <div align="left">
-        <button type="submit" class="btn btn-primary" name="export_note">Export</button>
+        <button style="width: 139px; height: 40px;" type="submit" class="btn btn-primary" name="search_note">Search Keyword</button>
+        <button style="width: 139px; height: 40px; margin-left: 826px;" type="submit" class="btn btn-primary" name="clear">Clear</button>
     </div>
 </form>
 {% endblock %}

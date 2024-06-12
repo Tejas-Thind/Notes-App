@@ -1,9 +1,9 @@
 # Import necessary modules from Flask
 import os
-from flask import Blueprint, render_template, request, flash, jsonify
+from flask import Blueprint, render_template, request, flash, jsonify, redirect, url_for
 from flask_login import login_required, current_user
-from .models import Note, User  
-from . import db 
+from .models import Note, User
+from . import db
 import json
 
 # Create a Blueprint named 'views'
@@ -13,11 +13,13 @@ views = Blueprint('views', __name__)
 @views.route('/', methods=['GET', 'POST'])
 @login_required  # Ensure the user is logged in to access this route
 def home():
-    if request.method == 'POST': 
+
+    # Check if the request method is POST
+    if request.method == 'POST':
         # Check which button was clicked
         if 'add_note' in request.form:  # Check if the add note button was clicked
-            note = request.form.get('note') 
-            if len(note) < 1:  
+            note = request.form.get('note')
+            if len(note) < 1:
                 flash('Note is too short!', category='error')  
             else:
                 # Create a new Note object with the form data and current user's ID
@@ -28,22 +30,36 @@ def home():
         elif 'export_note' in request.form:  # Check if the other button was clicked
             # Query all notes from the database by the current user's ID
             notes = db.session.query(Note).all()
-            # Define the path to the file where the notes will be exported
             user = User.query.filter_by(id=current_user.id).first()
-            notes_folder = os.path.join(os.getenv('HOME'), 'Notes')
+            # Define the path to the file where the notes will be exported
             path = os.path.join('Notes', f'{user.first_name}' + ' Notes.txt')
-            path_1 = 'notes.txt'
-            flash(path, category='success')
             with open(path, 'w') as infile:
                 infile.write('Notes:\n')
                 infile.write('\n')
                 for note in notes:
                     infile.write(note.data + '  Written at: ' + str(note.date) +'\n')
             flash('Note was successfully exported!', category='success')
-            
+        elif 'search_note' in request.form:
+            search = request.form.get('search')
+            if len(search) < 1:
+                searched_notes=[]
+                flash('Search is too short!', category='error')
+            else:
+                notes = db.session.query(Note).all()
+                searched_notes=[]
+                for note in notes:
+                    if search in note.data:
+                        searched_notes.append(note.data)
+                if len(searched_notes) < 1:
+                    flash('No notes found!', category='error')
+                else:
+                    flash('Search completed!', category='success')
+        elif 'clear' in request.form:
+            searched_notes=[]
+            flash('Search cleared!', category='success')
 
-    # Render the home.html template, passing the current user as a context variable
-    return render_template("home.html", user=current_user)
+    # Render the home.html template, passing the current user as a context variable and the searched notes if the search button was clicked
+    return render_template("home.html", user=current_user, searched_notes=searched_notes if 'search_note' in request.form else None)
 
 # Define a route for deleting a note with the POST method
 @views.route('/delete-note', methods=['POST'])

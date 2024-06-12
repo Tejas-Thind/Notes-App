@@ -1,7 +1,7 @@
-from flask import Flask
+from flask import Flask, session
 from flask_sqlalchemy import SQLAlchemy
 from os import path
-from flask_login import LoginManager
+from flask_login import LoginManager, current_user
 
 # Initialize the database instance
 db = SQLAlchemy()
