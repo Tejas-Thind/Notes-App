@@ -5,6 +5,9 @@ The Notes App is a powerful and user-friendly application designed to help you o
 Quick demo video of the application.  
 https://github.com/Tejas-3105/Notes-App/assets/155028169/b86cd9cd-13f9-4ceb-94ee-4916b740700b  
 
+Screenshot of the exported notes file in GitHub codespaces.  
+![Screenshot 2024-06-15 004713](https://github.com/Tejas-3105/Notes-App/assets/155028169/b2d7b48e-2f63-4ba2-87e0-0effdff4e6fe)  
+
 ### Features  
 **User Authentication:** Secure login and registration system to ensure your notes are safe and private.  
 **Note Creation and Management:** Easily create and delete notes.   
