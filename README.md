@@ -3,7 +3,7 @@
 The Notes App is a powerful and user-friendly application designed to help you organize, manage, and access your notes efficiently. Whether you're jotting down quick reminders, capturing important ideas, or keeping track of to-do lists, this app provides a seamless experience with a range of features to enhance your productivity.   
 
 Quick demo video of the application.  
-https://github.com/Tejas-3105/Notes-App/assets/155028169/9ab0a9f5-1a9d-48a5-94a2-768ec8da62a1  
+https://github.com/Tejas-3105/Notes-App/assets/155028169/b86cd9cd-13f9-4ceb-94ee-4916b740700b  
 
 ### Features  
 **User Authentication:** Secure login and registration system to ensure your notes are safe and private.  
