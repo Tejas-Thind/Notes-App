@@ -14,8 +14,4 @@ Screenshot of the exported notes file in GitHub codespaces.
 **Search Functionality:** Quickly find notes using the search feature, making it easy to retrieve specific information.   
 **Export Notes:** Export your notes to a text file for backup or sharing. Each note is labelled with the time it was created.   
 **Responsive Design:** Access your notes from any device with a clean and responsive interface.   
-**Flash Messages:** Get real-time feedback with flash messages that inform you of successful actions or errors.   
-
-
-https://github.com/user-attachments/assets/a0ed714e-0641-4be6-a955-1ac2e8ecdc23
-
+**Flash Messages:** Get real-time feedback with flash messages that inform you of successful actions or errors.     
